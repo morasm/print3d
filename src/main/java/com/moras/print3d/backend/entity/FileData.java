@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
@@ -19,19 +20,24 @@ public class FileData {
 	@Column(name = "fileName")
 	private String fileName;
 	
+	@Lob
+	@Column(name = "fileContent")
+	private byte[] fileContent;
+	
 	@Column(name = "price")
 	private float price;
 	
 	@Column(name = "isPrinted")
 	private boolean isPrinted;
 	
-	private PrintOrder printOrder;
+//	private PrintOrder printOrder;
 
 	public FileData() {}
-	
-	public FileData(int fileId, String fileName, float price, boolean isPrinted) {
+
+	public FileData(int fileId, String fileName, byte[] fileContent, float price, boolean isPrinted) {
 		this.fileId = fileId;
 		this.fileName = fileName;
+		this.fileContent = fileContent;
 		this.price = price;
 		this.isPrinted = isPrinted;
 	}
@@ -68,12 +74,21 @@ public class FileData {
 		this.isPrinted = isPrinted;
 	}
 
-	public PrintOrder getPrintOrder() {
-		return printOrder;
+//	public PrintOrder getPrintOrder() {
+//		return printOrder;
+//	}
+//
+//	public void setPrintOrder(PrintOrder printOrder) {
+//		this.printOrder = printOrder;
+//	}
+	
+
+	public byte[] getFileContent() {
+		return fileContent;
 	}
 
-	public void setPrintOrder(PrintOrder printOrder) {
-		this.printOrder = printOrder;
+	public void setFileContent(byte[] fileContent) {
+		this.fileContent = fileContent;
 	}
 
 	@Override

@@ -18,19 +18,20 @@ public class PrintOrder {
 	@Column(name = "orderId")
 	private int orderId;
 	
-	private ClientProfile clientProfile;
+//	private ClientProfile clientProfile;
 	
-	private List<FileData> files;
+//	private List<FileData> files;
 	
 	@Column(name= "orderStatus")
 	private OrderStatus orderStatus;
 
 	public PrintOrder() {};
 	
-	public PrintOrder(int orderId, ClientProfile clientProfile, List<FileData> files, OrderStatus orderStatus) {
+	public PrintOrder(int orderId, OrderStatus orderStatus) {
 		this.orderId = orderId;
-		this.clientProfile = clientProfile;
-		this.files = files;
+		//, ClientProfile clientProfile, List<FileData> files
+//		this.clientProfile = clientProfile;
+//		this.files = files;
 		this.orderStatus = orderStatus;
 	}
 
@@ -42,21 +43,21 @@ public class PrintOrder {
 		this.orderId = orderId;
 	}
 
-	public ClientProfile getClientProfile() {
-		return clientProfile;
-	}
-
-	public void setClientProfile(ClientProfile clientProfile) {
-		this.clientProfile = clientProfile;
-	}
-
-	public List<FileData> getFiles() {
-		return files;
-	}
-
-	public void setFiles(List<FileData> files) {
-		this.files = files;
-	}
+//	public ClientProfile getClientProfile() {
+//		return clientProfile;
+//	}
+//
+//	public void setClientProfile(ClientProfile clientProfile) {
+//		this.clientProfile = clientProfile;
+//	}
+//
+//	public List<FileData> getFiles() {
+//		return files;
+//	}
+//
+//	public void setFiles(List<FileData> files) {
+//		this.files = files;
+//	}
 
 	public OrderStatus getOrderStatus() {
 		return orderStatus;
@@ -66,10 +67,10 @@ public class PrintOrder {
 		this.orderStatus = orderStatus;
 	}
 
-	@Override
-	public String toString() {
-		return "PrintOrder [orderId=" + orderId + ", clientProfile=" + clientProfile + ", files=" + files
-				+ ", orderStatus=" + orderStatus + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "PrintOrder [orderId=" + orderId + ", clientProfile=" + clientProfile + ", files=" + files
+//				+ ", orderStatus=" + orderStatus + "]";
+//	}
 	
 }
