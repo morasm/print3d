@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PrintOrder")
+@Table(name = "print_order")
 public class PrintOrder {
 
 	@Id
@@ -18,7 +20,9 @@ public class PrintOrder {
 	@Column(name = "orderId")
 	private int orderId;
 	
-//	private ClientProfile clientProfile;
+	@ManyToOne
+	@JoinColumn(name = "clientId")
+	private ClientProfile clientProfile;
 	
 //	private List<FileData> files;
 	
@@ -27,10 +31,10 @@ public class PrintOrder {
 
 	public PrintOrder() {};
 	
-	public PrintOrder(int orderId, OrderStatus orderStatus) {
+	public PrintOrder(int orderId, ClientProfile clientProfile, OrderStatus orderStatus) {
 		this.orderId = orderId;
-		//, ClientProfile clientProfile, List<FileData> files
-//		this.clientProfile = clientProfile;
+		//, List<FileData> files
+		this.clientProfile = clientProfile;
 //		this.files = files;
 		this.orderStatus = orderStatus;
 	}
@@ -43,13 +47,13 @@ public class PrintOrder {
 		this.orderId = orderId;
 	}
 
-//	public ClientProfile getClientProfile() {
-//		return clientProfile;
-//	}
-//
-//	public void setClientProfile(ClientProfile clientProfile) {
-//		this.clientProfile = clientProfile;
-//	}
+	public ClientProfile getClientProfile() {
+		return clientProfile;
+	}
+
+	public void setClientProfile(ClientProfile clientProfile) {
+		this.clientProfile = clientProfile;
+	}
 //
 //	public List<FileData> getFiles() {
 //		return files;
