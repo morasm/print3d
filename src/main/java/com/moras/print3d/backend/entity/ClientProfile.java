@@ -36,18 +36,11 @@ public class ClientProfile {
 		this.clientName = clientName;
 		this.emailAddress = emailAddress;
 	}
-<<<<<<< HEAD
-//	public ClientProfile(String clientName, String emailAddress) {
-//		
-//		this.clientName = clientName;
-//		this.emailAddress = emailAddress;
-//	}
-=======
+	
 	public ClientProfile(String clientName, String emailAddress) {
 		this.clientName = clientName;
 		this.emailAddress = emailAddress;
 	}
->>>>>>> refs/heads/develop-gui
 
 	public int getClientId() {
 		return clientId;
