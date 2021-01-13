@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +24,8 @@ public class PrintOrder {
 	
 //	private List<FileData> files;
 	
-	@Column(name= "orderStatus")
+	@Enumerated(EnumType.STRING)
+	@Column(name= "orderStatus", length = 20)
 	private OrderStatus orderStatus;
 
 	public PrintOrder() {};
@@ -67,10 +70,10 @@ public class PrintOrder {
 		this.orderStatus = orderStatus;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "PrintOrder [orderId=" + orderId + ", clientProfile=" + clientProfile + ", files=" + files
-//				+ ", orderStatus=" + orderStatus + "]";
-//	}
+	@Override
+	public String toString() {
+		return "PrintOrder [orderId=" + orderId //+ ", clientProfile=" + clientProfile + ", files=" + files
+				+ ", orderStatus=" + orderStatus + "]";
+	}
 	
 }

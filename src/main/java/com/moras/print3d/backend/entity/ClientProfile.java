@@ -29,6 +29,10 @@ public class ClientProfile {
 		this.clientName = clientName;
 		this.emailAddress = emailAddress;
 	}
+	public ClientProfile(String clientName, String emailAddress) {
+		this.clientName = clientName;
+		this.emailAddress = emailAddress;
+	}
 
 	public int getClientId() {
 		return clientId;

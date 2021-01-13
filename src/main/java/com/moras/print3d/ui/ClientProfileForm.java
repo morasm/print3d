@@ -1,5 +1,7 @@
 package com.moras.print3d.ui;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.moras.print3d.backend.entity.ClientProfile;
 import com.moras.print3d.backend.service.ClientProfileService;
 import com.vaadin.flow.component.Component;
@@ -30,9 +32,9 @@ public class ClientProfileForm extends FormLayout{
 	
 	public ClientProfileForm(ClientProfileService theClientProfileService) {
 		clientProfileService = theClientProfileService;
-		clientProfile = new ClientProfile();
+		clientProfile = new ClientProfile("","");
 		addClassName("client-form");
-		add(clientName,emailAddress, createButtonsLayout());
+		add(clientName, emailAddress, createButtonsLayout());
 		binder.bindInstanceFields(this);
 		
 		save.addClickListener(e -> save());
@@ -44,12 +46,13 @@ public class ClientProfileForm extends FormLayout{
 		return new HorizontalLayout(save, cancel);
 	}
 	
-	public void setClientProfile(ClientProfile clientProfile) {
-		this.clientProfile = clientProfile;
-		binder.setBean(clientProfile);
-	}
+//	public void setClientProfile(ClientProfile clientProfile) {
+//		this.clientProfile = clientProfile;
+//		binder.setBean(clientProfile);
+//	}
 	
 	private void save() {
+		System.out.println(clientProfile);
 		clientProfileService.save(clientProfile);
 		setVisible(false);
 	}
