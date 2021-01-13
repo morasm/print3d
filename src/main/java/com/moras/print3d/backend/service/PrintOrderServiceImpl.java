@@ -21,8 +21,8 @@ public class PrintOrderServiceImpl implements PrintOrderService {
 
 	@Override
 	public List<PrintOrder> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return printOrderRepository.findAll();
 	}
 	
 	@Override
@@ -47,7 +47,7 @@ public class PrintOrderServiceImpl implements PrintOrderService {
 	@Override
 	public void save(PrintOrder thePrintOrder) {
 		printOrderRepository.save(thePrintOrder);
-		
+		System.out.println(thePrintOrder);
 	}
 
 

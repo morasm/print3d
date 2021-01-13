@@ -30,7 +30,8 @@ public class MainLayout extends AppLayout {
 		addToDrawer(new VerticalLayout(
 			new RouterLink("New order", OrderForm.class),
 			new RouterLink("Orders list", OrderListView.class),
-			new RouterLink("Client profile", ClientProfileForm.class)
+			new RouterLink("Client profile", ClientProfileForm.class),
+			new RouterLink("Clients list", ClientsListView.class)
 		));
 		
 	}
