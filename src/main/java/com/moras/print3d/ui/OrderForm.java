@@ -12,8 +12,10 @@ import javax.imageio.stream.ImageInputStream;
 
 import org.apache.commons.io.IOUtils;
 
+import com.moras.print3d.backend.entity.ClientProfile;
 import com.moras.print3d.backend.entity.OrderStatus;
 import com.moras.print3d.backend.entity.PrintOrder;
+import com.moras.print3d.backend.service.ClientProfileService;
 import com.moras.print3d.backend.service.PrintOrderService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.HasComponents;
@@ -21,6 +23,7 @@ import com.vaadin.flow.component.HtmlComponent;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Image;
@@ -41,16 +44,28 @@ public class OrderForm extends FormLayout {
 	private PrintOrderService printOrderService;
 	private PrintOrder printOrder;
 	
+	private ClientProfileService clientProfileService;
+	
+	
 	private OrderStatus orderStatus;
-//	TextField countParts = new TextField("Count");
+	TextField clientId = new TextField("Client");
 	Button save = new Button("Send");
+	ComboBox<ClientProfile> clProfile = new ComboBox<>("Client");
 	
-	Binder<PrintOrder> binder = new Binder<>(PrintOrder.class);
-	
-	public OrderForm(PrintOrderService thePrintOrderService) {
+	public OrderForm(PrintOrderService thePrintOrderService,
+			ClientProfileService theClientProfileService) {
 		Div output = new Div();
 		printOrderService = thePrintOrderService;
+		clientProfileService = theClientProfileService;
+		
+		clProfile.setItems(clientProfileService.findAll());
+		clProfile.setItemLabelGenerator(ClientProfile::getClientName);
+//		Binder<PrintOrder> binder = new Binder<>(PrintOrder.class);
+		
 		printOrder = new PrintOrder();
+
+		clProfile.addValueChangeListener(e -> printOrder.setClientProfile(e.getValue()));
+//		binder.setBean(printOrder);
 		printOrder.setOrderStatus(OrderStatus.NEW);
 
         //@formatter:off
@@ -73,8 +88,8 @@ public class OrderForm extends FormLayout {
         //@formatter:on
 
 
-        add( upload, output);
-        
+        add(clProfile, upload, output);
+//        binder.bindInstanceFields(this);
         save.addClickListener(e -> save(printOrder));
 	}
 

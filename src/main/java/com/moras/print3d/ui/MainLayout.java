@@ -1,5 +1,6 @@
 package com.moras.print3d.ui;
 
+import com.moras.print3d.ui.login.LoginView;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.html.H1;
@@ -31,7 +32,8 @@ public class MainLayout extends AppLayout {
 			new RouterLink("New order", OrderForm.class),
 			new RouterLink("Orders list", OrderListView.class),
 			new RouterLink("Client profile", ClientProfileForm.class),
-			new RouterLink("Clients list", ClientsListView.class)
+			new RouterLink("Clients list", ClientsListView.class),
+			new RouterLink("Login", LoginView.class)
 		));
 		
 	}

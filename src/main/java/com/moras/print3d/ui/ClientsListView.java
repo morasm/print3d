@@ -36,8 +36,8 @@ public class ClientsListView extends VerticalLayout {
 	}
 	private void configureGrid() {
 		grid.setSizeFull();
-		grid.setColumns("clientId", "clientName");
-		
+		grid.setColumns("clientId", "clientName", "emailAddress");
+		grid.getColumns().forEach(col -> col.setAutoWidth(true));
 	}
 }
 

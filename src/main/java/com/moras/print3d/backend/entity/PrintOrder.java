@@ -34,6 +34,11 @@ public class PrintOrder {
 
 	public PrintOrder() {};
 	
+	public PrintOrder(ClientProfile clientProfile, OrderStatus orderStatus) {
+		this.clientProfile = clientProfile;
+		this.orderStatus = orderStatus;
+	}
+	
 	public PrintOrder(int orderId, ClientProfile clientProfile, OrderStatus orderStatus) {
 		this.orderId = orderId;
 		//, List<FileData> files
@@ -76,7 +81,7 @@ public class PrintOrder {
 
 	@Override
 	public String toString() {
-		return "PrintOrder [orderId=" + orderId //+ ", clientProfile=" + clientProfile + ", files=" + files
+		return "PrintOrder [orderId=" + orderId + ", clientProfile=" + clientProfile //+ ", files=" + files
 				+ ", orderStatus=" + orderStatus + "]";
 	}
 	

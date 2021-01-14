@@ -5,6 +5,7 @@ package com.moras.print3d.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.moras.print3d.backend.entity.ClientProfile;
 import com.moras.print3d.backend.entity.PrintOrder;
 import com.moras.print3d.backend.service.PrintOrderService;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -34,8 +35,13 @@ public class OrderListView extends VerticalLayout {
 	}
 	private void configureGrid() {
 		grid.setSizeFull();
+		grid.removeColumnByKey("clientProfile");
 		grid.setColumns("orderId", "orderStatus");
-		
+		grid.addColumn(printOrder -> {
+			ClientProfile clientProfile = printOrder.getClientProfile();
+			return clientProfile == null ? "-" : clientProfile.getClientName();
+		}).setHeader("Client");
+//		grid.getColumns().forEach(col -> col.setAutoWidth(true));
 	}
 }
 

@@ -13,6 +13,7 @@ import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
@@ -28,15 +29,17 @@ public class ClientProfileForm extends FormLayout{
 	Button save = new Button("Save");
 	Button cancel = new Button("Cancel");
 	
-	Binder<ClientProfile> binder = new Binder<>(ClientProfile.class);
 	
 	public ClientProfileForm(ClientProfileService theClientProfileService) {
 		clientProfileService = theClientProfileService;
+
+		Binder<ClientProfile> binder = new Binder<>(ClientProfile.class);
 		clientProfile = new ClientProfile("","");
+		binder.setBean(clientProfile);
 		addClassName("client-form");
 		add(clientName, emailAddress, createButtonsLayout());
 		binder.bindInstanceFields(this);
-		
+
 		save.addClickListener(e -> save());
 	}
 
@@ -46,13 +49,7 @@ public class ClientProfileForm extends FormLayout{
 		return new HorizontalLayout(save, cancel);
 	}
 	
-//	public void setClientProfile(ClientProfile clientProfile) {
-//		this.clientProfile = clientProfile;
-//		binder.setBean(clientProfile);
-//	}
-	
 	private void save() {
-		System.out.println(clientProfile);
 		clientProfileService.save(clientProfile);
 		setVisible(false);
 	}
